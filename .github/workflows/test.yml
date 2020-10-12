@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
       - uses: actions/checkout@v2
@@ -37,50 +37,12 @@ jobs:
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-
-  test-db:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7, 3.8]
-        couchdb-version: ["3.0", 3.1]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip3 install -r requirements-test.txt
-
-      - name: Set up CouchDB ${{ matrix.couchdb-version }}
-        run: |
-          docker run -d -p 5984:5984 -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=admin couchdb:${{ matrix.couchdb-version }}
-          for _ in $(seq 30); do
-            echo Init: Waiting for CouchDb...
-            if curl -X POST http://admin:admin@localhost:5984/_cluster_setup -H "Content-Type: application/json" -d "{\"action\":\"enable_single_node\",\"username\":\"admin\",\"password\":\"admin\",\"bind_address\":\"0.0.0.0\",\"port\":5984,\"singlenode\":true}" > /dev/null 2>&1; then
-              break
-            fi
-            sleep 1
-          done
-
-      - name: Test with pytest
-        run: |
-          python3 -m pytest
-
-
   test-package:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
       - uses: actions/checkout@v2
