@@ -14,7 +14,7 @@ class EnvReader:
         str: lambda x: str(x),
         int: lambda x: int(str(x)),
         float: lambda x: float(str(x)),
-        bool: lambda x: str(x).strip().lower() in ('1', 'true', 'ok', 'on')
+        bool: lambda x: str(x).strip().lower() in ('1', 'true', 'ok', 'on', 'yes', 'y')
     }
 
     def __new__(cls: Any, *args, cached: bool = True, populate: bool = True, **kwargs):
