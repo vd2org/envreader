@@ -4,6 +4,9 @@ All notable changes to this project.
 
 ## [Unreleased]
 
+
+## [0.0.3] - 2020-10-13
+
 ### Added
 - Added "yes" and "y" variants for the bool type.
 
