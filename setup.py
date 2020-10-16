@@ -1,6 +1,6 @@
-# Copyright (C) 2019-2020 by Vd.
-# This file is part of Wheelchair, the async CouchDB connector.
-# Wheelchair is released under the MIT License (see LICENSE).
+# Copyright (C) 2020 by Vd.
+# This file is part of EnvReader, the modern environment variables processor.
+# EnvReader is released under the MIT License (see LICENSE).
 
 
 from os.path import join, dirname
