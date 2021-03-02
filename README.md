@@ -1,6 +1,6 @@
 # EnvReader
 
-Environment variables parser with types! Yes! 
+Environment variables parser with types! Yes!
 
 Every time when you make new service you need some class to receive, validate and store environment variables.
 
@@ -10,7 +10,7 @@ Just make a class with typed fields and... that’s it.
 
 ### Requirements
 
-Python 3.6 and above. No any additional dependencies.
+Python 3.6 and above. There's no additional dependencies.
 
 ### Installation
 
@@ -21,14 +21,20 @@ Python 3.6 and above. No any additional dependencies.
 ```python
 from envreader import EnvReader
 
+
 class MyEnv(EnvReader):
     PATH: str
-    NONE_EXIST: int = 1234 # Variable with default value
+    LIST: list
+    NONE_EXIST: int = 1234  # Variable with default value
+
 
 e = MyEnv()
 
 print(e.PATH)
 # /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+print(e.LIST)
+# [1, 2, 3, 4]
 
 print(e.NONE_EXIST)
 # 1234
@@ -36,16 +42,19 @@ print(e.NONE_EXIST)
 
 ### Use with transform functions
 
-I don’t want to make a giant validation library like wonderful **Pydantic**. Thus EnvReader supports only simple types(bool, str, int, float) by default. This is enough in most cases. 
+I don’t want to make a giant validation library like wonderful **Pydantic**. Thus EnvReader supports only simple types(
+bool, str, int, float, list, tuple and dict) by default. This is enough in most cases.
 
-Transform functions allow to use EnvReader for more complex cases.
+Transform functions allows using EnvReader for more complex cases.
 
 ```python
 from typing import List
 from envreader import EnvReader, Field
 
+
 class MyEnv(EnvReader):
     PATH: List[str] = Field(transform=lambda x: x.split(":"))
+
 
 e = MyEnv()
 
@@ -61,12 +70,14 @@ You may store all your helper functions inside the same class. But don’t forge
 from typing import List
 from envreader import EnvReader, Field
 
+
 class MyEnv(EnvReader):
     @staticmethod
     def trans(x: str) -> List[str]:
         return x.split(':')
-    
+
     PATH: List[str] = Field(transform=trans)
+
 
 e = MyEnv()
 
@@ -81,8 +92,10 @@ Documentation is in great demand for all good applications, right?
 ```python
 from envreader import EnvReader, Field
 
+
 class MyEnv(EnvReader):
     PATH: str = Field("/sbin", description="Application path", example="/usr/bin:/bin:/usr/sbin:/sbin")
+
 
 e = MyEnv()
 
@@ -99,8 +112,10 @@ print(e.help())
 import sys
 from envreader import EnvReader, EnvMissingError
 
+
 class MyEnv(EnvReader):
     SOME_VAR: str
+
 
 try:
     e = MyEnv()

@@ -3,6 +3,7 @@
 # EnvReader is released under the MIT License (see LICENSE).
 
 
+import json
 from typing import Any, List
 
 from .field import Field
@@ -14,7 +15,10 @@ class EnvReader:
         str: lambda x: str(x),
         int: lambda x: int(str(x)),
         float: lambda x: float(str(x)),
-        bool: lambda x: str(x).strip().lower() in ('1', 'true', 'ok', 'on', 'yes', 'y')
+        bool: lambda x: str(x).strip().lower() in ('1', 'true', 'ok', 'on', 'yes', 'y', 'enable', 'enabled'),
+        list: lambda x: list(json.loads(x) if isinstance(x, str) else x),
+        tuple: lambda x: tuple(json.loads(x) if isinstance(x, str) else x),
+        dict: lambda x: dict(json.loads(x) if isinstance(x, str) else x)
     }
 
     def __new__(cls: Any, *args, cached: bool = True, populate: bool = True, **kwargs):

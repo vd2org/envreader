@@ -3,6 +3,7 @@ All notable changes to this project.
 
 
 ## [Unreleased]
+- Added list, tuple and dict types, assuming json-input.
 
 
 ## [0.0.3] - 2020-10-13
