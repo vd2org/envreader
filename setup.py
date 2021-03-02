@@ -9,7 +9,7 @@ import setuptools
 
 setuptools.setup(
     name='envreader',
-    version='0.0.3',
+    version='0.0.4',
     author='Vd',
     author_email='vd@vd2.org',
     url='https://github.com/vd2org/envreader',
