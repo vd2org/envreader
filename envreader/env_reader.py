@@ -19,6 +19,7 @@ class EnvReader:
         tuple: lambda x: tuple(json.loads(x) if isinstance(x, str) else x),
         dict: lambda x: dict(json.loads(x) if isinstance(x, str) else x)
     }
+    __transforms = {**__transforms, **{k.__name__: v for k, v in __transforms.items()}}
 
     def __new__(cls: Any, *args, cached: bool = True, populate: bool = True, **kwargs):
         _attrs = {}
