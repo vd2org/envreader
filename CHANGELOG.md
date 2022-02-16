@@ -5,6 +5,12 @@ All notable changes to this project.
 ## [Unreleased]
 
 
+## [0.0.5] - 2022-02-16
+
+### Added
+- Added support for PEP 563: Postponed Evaluation of Annotations
+
+
 ## [0.0.4] - 2021-02-03
 
 ### Added
