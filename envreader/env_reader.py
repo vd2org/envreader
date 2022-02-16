@@ -2,7 +2,6 @@
 # This file is part of EnvReader, the modern environment variables processor.
 # EnvReader is released under the MIT License (see LICENSE).
 
-
 import json
 from typing import Any, List
 
@@ -31,8 +30,8 @@ class EnvReader:
                 _field = Field(... if _field is None else _field, alias=attr)
 
             if attr_type not in cls.__transforms and not _field.transform:
-                raise TypeError(f"Unsupported type {attr_type} for field `{attr}`. "
-                                f"Supported field types is {list(cls.__transforms.keys())}. "
+                raise TypeError(f"Unsupported type `{attr_type}` for field `{attr}`. "
+                                f"Supported field types is `{list(cls.__transforms.keys())}`. "
                                 f"Please provide transform function!")
 
             _field_getter = FieldGetter(
