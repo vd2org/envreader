@@ -15,7 +15,7 @@ def test_transform():
 
     class MyEnv(EnvReader):
         @staticmethod
-        def transform_list_int(x: str) -> Tuple[int]:
+        def transform_list_int(x: str) -> Tuple[int, ...]:
             return tuple([int(x.strip()) for x in x.split(',')])
 
         VAR_LIST_STR: Tuple[str] = Field(transform=lambda x: tuple([x.strip() for x in x.split(',')]))
