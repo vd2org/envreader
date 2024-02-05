@@ -5,6 +5,15 @@ All notable changes to this project.
 ## [Unreleased]
 
 
+## [1.0.0] - 2024-02-05
+
+### Added
+- Support for python 3.11
+- Support for python 3.12
+### Removed
+- Support for python 3.6
+
+
 ## [0.0.5] - 2022-02-16
 
 ### Added
