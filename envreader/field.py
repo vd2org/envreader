@@ -19,7 +19,7 @@ class Field:
         self.__transform = transform.__func__ if isinstance(transform, staticmethod) else transform
 
         if self.__transform and not callable(self.__transform):
-            raise TypeError("Unsupported transform value! Use callable class, function, lambda or staticmethod!")
+            raise TypeError("Unsupported transform value! Use callable object, function, lambda or staticmethod!")
 
     @property
     def default(self) -> Any:
