@@ -10,7 +10,7 @@ Just make a class with typed fields and... that’s it.
 
 ### Requirements
 
-Python 3.6 and above. There's no additional dependencies.
+Python 3.7 and above. There's no additional dependencies.
 
 ### Installation
 
